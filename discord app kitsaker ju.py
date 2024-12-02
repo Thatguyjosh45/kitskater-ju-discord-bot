@@ -1,42 +1,108 @@
-#discord app 
+# bot.py
 import os
-import random
-TOKEN = {"token"}
-client = discord.Client() # type: ignore
-TOKEN = {"token"}
-token = os.getenv('token')
+
+import discord
+from dotenv import load_dotenv
+
+load_dotenv()
+TOKEN = os.getenv('')
+GUILD = os.getenv('DISCORD_GILD')
+
+client = discord.Client(intents=discord.Intents.default())
+
 @client.event
 async def on_ready():
-    print("Logged in as a bot {0.user}".format(client))
+    for guild in client.guilds:
+        if guild.name == GUILD:
+            break
+
+    print(
+        f'{client.user} is connected to the following guild:\n'
+        f'{guild.name}(id: {guild.id})'
+    )
+
+client.run(TOKEN)
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
+GUILD = os.getenv('DISCORD_GUILD')
+
+client = discord.Client()
+
 @client.event
-async def on_message(message):
-    username = str(message.author).split("#")[0]
-    channel = str(message.channel.name)
-    user_message = str(message.content)
+async def on_ready():
+    for guild in client.guilds:
+        if guild.name == GUILD:
+            break
 
-    print(f'Message {user_message} by {username} on {channel}')
+    print(
+        f'{client.user} is connected to the following guild:\n'
+        f'{guild.name}(id: {guild.id})\n'
+    )
 
-    if message.author == client.user:
-        return
+    members = '\n - '.join([member.name for member in guild.members])
+    print(f'Guild Members:\n - {members}')
 
-    if channel == "random":
-        if user_message.lower() == "hello" or user_message.lower() == "hi":
-            await message.channel.send(f'Hello {username}')
-            return
-        elif user_message.lower() == "bye":
-            await message.channel.send(f'Bye {username}')
-        elif user_message.lower() == "tell me a joke":
-            jokes = [" Can someone please shed more\
-            light on how my lamp got stolen?",
-                     "Why is she called llene? She\
-                     stands on equal legs.",
-                     "What do you call a gazelle in a \
-                     lions territory? Denzel."]
-            await message.channel.send(random.choice(jokes))
-        client.run(token)
-from discord  import commands # type: ignore
-client = commands.Bot(command_prefix="!")
-@client.command()
-async def ping(ctx):
-  await ctx.send('Pong!')
+client.run(TOKEN)
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
+GUILD = os.getenv('DISCORD_GUILD')
 
+client = discord.Client()
+
+@client.event
+async def on_ready():
+    for guild in client.guilds:
+        if guild.name == GUILD:
+            break
+
+    print(
+        f'{client.user} is connected to the following guild:\n'
+        f'{guild.name}(id: {guild.id})'
+    )
+
+client.run(TOKEN)
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
+GUILD = os.getenv('DISCORD_GUILD')
+
+client = discord.Client()
+
+@client.event
+async def on_ready():
+    for guild in client.guilds:
+        if guild.name == GUILD:
+            break
+
+    print(
+        f'{client.user} is connected to the following guild:\n'
+        f'{guild.name}(id: {guild.id})'
+    )
+
+client.run(TOKEN)
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
+
+class CustomClient(discord.Client):
+    async def on_ready(self):
+        print(f'{self.user} has connected to Discord!')
+
+client = CustomClient()
+client.run(TOKEN)
+from discord.ext import commands
+
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
+
+# 2
+bot = commands.Bot(command_prefix='!')
+
+@bot.event
+async def on_ready():
+    print(f'{bot.user.name} has connected to Discord!')
+
+bot.run(TOKEN)# .env
+DISCORD_TOKEN={''}
+@bot.command()
+async def ok(ctx):
+    guild_id = ctx.guild.id
+    await ctx.send(guild_id)
