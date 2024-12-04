@@ -6,7 +6,7 @@ import random
 TOKEN = 'YOUR_BOT_TOKEN'
 
 # Set command prefix
-bot = commands.Bot(command_prefix='!', intents=discord.Intents.all())
+bot = commands.Bot(command_prefix='|', intents=discord.Intents.all())
 
 @bot.event
 async def on_ready():
