@@ -62,8 +62,8 @@ async def meme(ctx):
 
 @bot.command()
 async def greet(ctx):
-    greetings = ["Hello!", "Hi there!", "Hey!", "Howdy!", "Wanna smash?"]
-    await ctx.send(random.choice(greetings))
+    gif_url = "https://media1.giphy.com/media/RMkX6xueIWG4RMRMX3/200w.gif?cid=6c09b952cosjmjisd8s02k82tycnp9918uzvhj5lemh8li4o&ep=v1_gifs_search&rid=200w.gif&ct=g"
+    await ctx.send(f"Hello {ctx.author.mention} Oil Up for me lil bro! {gif_url}")
 
 # Error handling
 @bot.event
