@@ -10,6 +10,8 @@ bot = commands.Bot(command_prefix='|', intents=discord.Intents.all())
 
 @bot.event
 async def on_ready():
+    activity = discord.Game(name="with baby oil")
+    await bot.change_presence(status=discord.Status.online, activity=activity)
     print(f'Logged in as {bot.user}! Bot is ready.')
 
 # Moderation commands
@@ -17,7 +19,7 @@ async def on_ready():
 @commands.has_permissions(kick_members=True)
 async def kick(ctx, member: discord.Member, *, reason=None):
     await member.kick(reason=reason)
-    await ctx.send(f'User {member} has been kicked.')
+    await ctx.send(f'User {member} has been kicked in the ass.')
 
 @bot.command()
 @commands.has_permissions(ban_members=True)
@@ -60,7 +62,7 @@ async def meme(ctx):
 
 @bot.command()
 async def greet(ctx):
-    greetings = ["Hello!", "Hi there!", "Hey!", "Howdy!", "What's up?"]
+    greetings = ["Hello!", "Hi there!", "Hey!", "Howdy!", "Wanna smash?"]
     await ctx.send(random.choice(greetings))
 
 # Error handling
